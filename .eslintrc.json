@@ -40,7 +40,7 @@
         "handle-callback-err": "off",
         "indent": [
             "error",
-            "tab"
+            2
         ],
         "keyword-spacing": "error",
         "max-nested-callbacks": [
@@ -89,7 +89,7 @@
         ],
         "prefer-const": "error",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
