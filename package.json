@@ -1,12 +1,13 @@
 {
   "name": "a-bot",
   "version": "1.0.0",
-  "main": "src/bot.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --quiet --cache \"src/**/*.js\"",
+    "lint": "eslint --quiet --cache \"*/**/*.js\"",
     "dev": "nodemon . --exec \"yarn lint && node\"",
-    "deploy-commands": "node src/lib/deploy-commands.js"
+    "deploy-commands": "node src/deploy-commands.js",
+    "start": "node ."
   },
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
