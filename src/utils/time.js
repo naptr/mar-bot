@@ -13,6 +13,7 @@ module.exports = {
     const date = new Date();
     const hour = date.getHours();
 
+    /* eslint-disable */
     switch (true) {
       case (hour >= 0 && hour < 12):
         return 'Pagi';
@@ -23,5 +24,6 @@ module.exports = {
       case (hour >= 18 && hour <= 23):
         return 'Malam';
     }
+    /* eslint-enable */
   },
 };

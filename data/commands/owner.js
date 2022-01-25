@@ -1,8 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { getCurrentPeriod } = require('../../src/utils/time.js');
-const { DEBUG_MODE } = require('../../src/lib/constants.js');
+// const { DEBUG_MODE } = require('../../src/lib/constants.js');
 
-/* eslint-disable-next-lin */
+/* eslint-disable-next-line */
 debugger;
 // DEBUG_MODE && console.log(hour);
 

@@ -1,10 +1,8 @@
 // Require the necessary discord.js Classes
 // /* eslint no-unused-var: "warn" */
 const fs = require('fs');
-const path = require('path');
 const { Client, Collection, Intents } = require('discord.js');
 require('dotenv').config();
-const { DEBUG_MODE } = require('./lib/constants.js');
 
 // Create a new client instance
 const client = new Client({
@@ -14,18 +12,10 @@ const client = new Client({
   ],
 });
 
-client.once('ready', () => {
-  console.log('Bot is Ready!');
-});
-
 client.commands = new Collection();
 
-const commandFiles = fs.readdirSync(path.resolve('data/commands')).filter(file => file.endsWith('.js'));
-
-/* eslint-disable */
-debugger;
-DEBUG_MODE && console.log(commandFiles);
-/* eslint-enable */
+const commandFiles = fs.readdirSync('./data/commands').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./data/events').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
   const command = require(`../data/commands/${file}`);
@@ -33,24 +23,15 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-/* eslint-disable-next-line */
+for (const file of eventFiles) {
+  const event = require(`../data/events/${file}`);
 
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
-
-  const { commandName } = interaction;
-
-  const command = client.commands.get(commandName);
-
-  try {
-    await command.execute(interaction, client);
-    /* eslint-disable-next-line */
-  } catch (error) {
-    console.error(error);
-    /* esling-disable-next-line */
-    await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else { // eslint-disable-line
+    client.on(event.name, (...args) => event.execute(...args, client));
   }
-});
+}
 
 module.exports = {
   start: function(token) {

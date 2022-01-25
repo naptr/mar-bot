@@ -10,7 +10,7 @@ const { PUBLIC_DISCORD_GUILD_ID: GUILD_ID } = process.env;
 const { application_id: CLIENT_ID, private_token: TOKEN } = botConfig;
 
 const commands = [];
-const commandFiles = fs.readdirSync(path.resolve('data/commands')).filter(file => file.endsWith('js'));
+const commandFiles = fs.readdirSync(path.resolve('data/commands')).filter(file => file.endsWith('.js'));
 const rest = new REST({ version: '9' }).setToken(TOKEN);
 
 for (const file of commandFiles) {
