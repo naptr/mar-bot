@@ -10,7 +10,7 @@ module.exports = {
       await command.execute(interaction, client);
     } catch (error) {
       console.error(error);
-      await interaction.reply(`Error Occured ${error}`);
+      await interaction.reply(`\`${error}\``);
     }
     /* eslint-enable */
   },

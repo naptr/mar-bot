@@ -6,9 +6,8 @@
   "scripts": {
     "lint": "eslint --quiet --cache \"*/**/*.js\"",
     "dev": "nodemon . --exec \"yarn lint && node\"",
-    "dev-no-lint": "nodemon .",
-    "deploy-commands": "node src/deploy-commands.js",
-    "start": "node ."
+    "commands-deploy": "node src/deploy-commands.js",
+    "serve": "yarn commands-deploy && node ."
   },
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
